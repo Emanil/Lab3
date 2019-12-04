@@ -1,8 +1,7 @@
 #include <iostream>
-
 using namespace std;
 
-int average_salary() {
+const int average_salary() {
 
 }
 
