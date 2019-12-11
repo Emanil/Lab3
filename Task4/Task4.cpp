@@ -1,8 +1,8 @@
 #include <iostream>
 using namespace std;
 
-void swap_sort(int& a, int& b, int& c, bool order) {
-	int list[3] = { a, b, c };
+void swap_sort_ptr_addr(int **a, int **b, int **c, bool order) {
+	int list[3] = { **a, **b, **c };
 	int i = 0, n = i + 1; // Iterators
 	if (order == 1) { // Ascending
 		while (list[0] > list[1] || list[0] > list[2] || list[1] > list[2]) { // While not sorted, can definitely be written better
@@ -49,9 +49,9 @@ void swap_sort(int& a, int& b, int& c, bool order) {
 			}
 		}
 	}
-	a = list[0]; // Untill now a,b,c hasn't changed
-	b = list[1];
-	c = list[2];
+	**a = list[0]; // Untill now a,b,c hasn't changed
+	**b = list[1];
+	**c = list[2];
 }
 
 int main() {
@@ -74,9 +74,14 @@ int main() {
 		cout << "Sort ascending/descending (1/0): ";
 		cin >> order;
 
-		swap_sort(a, b, c, order);
-
+		swap_sort_ptr_addr(app, bpp, cpp, order);
 		cout << a << ", " << b << ", " << c << endl;
+		
+		int a = 7, b = 6, c = 1;
+		int* p1 = &a, * p2 = &b, * p3 = &c;
+		swap_sort_ptr_addr(&p1, &p2, &p3, true);
+		cout << *p1 << " " << *p2 << " " << *p3 << endl; // Prints "1 6 7"
+
 	}
 	return(0);
 }
